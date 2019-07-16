@@ -84,10 +84,10 @@ class FIFOScheduler:
                     task = self.to_do.popleft()
                     task.gen_burst_time()
                     if not end_times.get(task.burst_time + i):
-                        end_times[task.burst_time+ i] = [task]
+                        end_times[task.burst_time + i] = [task]
                     else:
                         end_times[task.burst_time + i].append(task)
-            print(f"Processing {i}th Second" )
+            print(f"Processing {i}th Second")
             print(str(end_times))
 
 
@@ -129,7 +129,7 @@ class RoundRobinScheduler:
                 remove_items = end_times.get(i)
                 del end_times[i]
                 for rem in remove_items:
-                    rem.insertedTime =  i
+                    rem.insertedTime = i
                     self.to_do[rem.customer._id].append(rem)
             cust_id = round_robin.__next__()
             for j in range(0, len(remove_items)):
@@ -137,11 +137,11 @@ class RoundRobinScheduler:
                     task = self.to_do[cust_id].popleft()
                     task.gen_burst_time()
                     if not end_times.get(task.burst_time + i):
-                        end_times[task.burst_time+ i] = [task]
+                        end_times[task.burst_time + i] = [task]
                     else:
                         end_times[task.burst_time + i].append(task)
                 cust_id = round_robin.__next__()
-            print(f"Processing {i}th Second" )
+            print(f"Processing {i}th Second")
             print(str(end_times))
 
 
@@ -186,7 +186,7 @@ class BalancedRoundRobinScheduler:
                 remove_items = end_times.get(i)
                 del end_times[i]
                 for rem in remove_items:
-                    rem.insertedTime =  i
+                    rem.insertedTime = i
                     self.to_do[rem.customer._id].append(rem)
 
             for rem in remove_items:
@@ -195,10 +195,10 @@ class BalancedRoundRobinScheduler:
                     task = self.to_do[cust_id].popleft()
                     task.gen_burst_time()
                     if not end_times.get(task.burst_time + i):
-                        end_times[task.burst_time+ i] = [task]
+                        end_times[task.burst_time + i] = [task]
                     else:
                         end_times[task.burst_time + i].append(task)
                 processing = processing + 1
                 cust_id = round_robin.__next__()
-            print(f"Processing {i}th Second" )
+            print(f"Processing {i}th Second")
             print(str(end_times))
